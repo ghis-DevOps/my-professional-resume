@@ -1,0 +1,23 @@
+name: My First CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest # macos, windows-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+      - name: Build Docker image
+        run: |
+          docker build -t ghislain77/cicd-portfolio .
+      - name: Docker login
+        uses: docker/login-action@v3
+        with:
+          username: ghislain77
+          password: ${{ secrets.DOCKER_PASS }}
+      - name: Push image
+        run: 
+          docker push ghislain77/cicd-portfolio
