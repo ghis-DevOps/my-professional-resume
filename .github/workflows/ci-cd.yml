@@ -41,7 +41,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:ecr:us-east-1:277869548641:repository/my-repo
+          role-to-assume: ${{ secrets.AWS_ROLE }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -58,7 +58,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:ecr:us-east-1:277869548641:repository/my-repo
+          role-to-assume: ${{ secrets.AWS_ROLE }}
 
       - name: Deploy to Ecs
         run: echo "Deploy to ecs"
