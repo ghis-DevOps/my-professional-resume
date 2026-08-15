@@ -41,7 +41,8 @@ jobs:
           echo "repo: ${{ github.repository }}"
           echo "ref: ${{ github.ref }}"
       - name: Debug role ARN length
-        run: echo "AWS_ROLE length: ${#AWS_ROLE}"
+        run: |
+          echo "AWS_ROLE length: ${#AWS_ROLE}"
         env:
           AWS_ROLE: ${{ secrets.AWS_ROLE }}
       - name: Configure AWS credentials
